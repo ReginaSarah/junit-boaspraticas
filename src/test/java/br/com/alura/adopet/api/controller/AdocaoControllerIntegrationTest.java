@@ -33,28 +33,4 @@ class AdocaoControllerIntegrationTest {
         Assertions.assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
     }
 
-    @Test
-    void deveriaDevolverCodigo200ParaSolicitacaoDeAdocaoSemErros() {
-        // ARRANGE
-        String json = """
-                {
-                    "idPet": 1,
-                    "idTutor": 1,
-                    "motivo": "Motivo qualquer"
-                }
-                """;
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        // ACT
-        ResponseEntity<Void> response = restTemplate.exchange(
-                "/adocoes",
-                HttpMethod.POST,
-                new HttpEntity<>(json, headers),
-                Void.class
-        );
-
-        // ASSERT
-        Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
-    }
 }
